@@ -1,5 +1,6 @@
 package com.ensah.examplan.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,9 @@ public class ElementPedagogique {
     private String titre;
     private String niveau;
     private String type;
-
-
+    @ManyToOne
+    @JoinColumn(name = "enseignant_id",referencedColumnName = "idPersonnel")
+    @JsonIgnoreProperties("elementPedagogiques")
+    Enseignant enseignant;
 
 }

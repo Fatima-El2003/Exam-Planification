@@ -1,5 +1,6 @@
 package com.ensah.examplan.controller;
 
+import com.ensah.examplan.model.ElementPedagogique;
 import com.ensah.examplan.model.Enseignant;
 import com.ensah.examplan.service.EnseignantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class EnseignantController {
     private EnseignantService enseignantService;
     @PostMapping
     public ResponseEntity<Enseignant> addEnseignant(@RequestBody Enseignant enseignant){
+        List<ElementPedagogique> elementPedagogiques = enseignant.getElementPedagogiques();
+        if (elementPedagogiques != null) {
+            for (ElementPedagogique elementPedagogique : elementPedagogiques ) {
+                elementPedagogique.setEnseignant(enseignant); // Set the owner for each car
+            }
+        }
         Enseignant savedEnseignant = enseignantService.addEnseignant(enseignant);
         return new ResponseEntity<>(savedEnseignant, HttpStatus.CREATED);
     }
