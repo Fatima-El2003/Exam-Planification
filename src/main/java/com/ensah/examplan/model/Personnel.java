@@ -13,6 +13,8 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class Personnel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +22,7 @@ public class Personnel implements Serializable {
     private Long idPersonnel;
     private String nom;
     private String prenom;
+    @Column(name = "type", insertable = false, updatable = false)
     private String type;
+    private Long idSalle;
 }
