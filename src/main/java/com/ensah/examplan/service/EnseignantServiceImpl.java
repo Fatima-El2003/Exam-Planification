@@ -34,8 +34,6 @@ public class EnseignantServiceImpl implements EnseignantService{
         enseignant.setNom(updatedEnseignant.getNom());
         enseignant.setPrenom(updatedEnseignant.getPrenom());
         enseignant.setIdSalle(updatedEnseignant.getIdSalle());
-        enseignant.setIdDepartment(updatedEnseignant.getIdDepartment());
-        enseignant.setIdFiliere(updatedEnseignant.getIdFiliere());
         enseignant.setIdGroupe(updatedEnseignant.getIdGroupe());
         enseignant.setEmail(updatedEnseignant.getEmail());
         enseignant.setPassword(updatedEnseignant.getPassword());

@@ -15,13 +15,13 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Groupe {
+public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Long idGroupe ;
-    private String nom;
-    @OneToMany(mappedBy = "groupe", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("groupe")
+    private Long idDepartment;
+    private String nomDepartment;
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("department")
     private List<Enseignant> enseignants=new ArrayList<>();
 }
