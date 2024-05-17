@@ -21,9 +21,10 @@ public class Semestre {
     @Column(nullable = false, updatable = false)
     private Long idSemestre;
     private String intitule;
-    @OneToMany(mappedBy = "semestre", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "idSemestre", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnoreProperties("semestre")
     private Set<Examen> examens = new HashSet<>();
+
 
 
 }

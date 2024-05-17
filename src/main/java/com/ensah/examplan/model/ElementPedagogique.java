@@ -7,6 +7,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -24,5 +27,7 @@ public class ElementPedagogique {
     @JoinColumn(name = "enseignant_id",referencedColumnName = "idPersonnel")
     @JsonIgnoreProperties("elementPedagogiques")
     Enseignant enseignant;
-
+    @OneToMany(mappedBy = "element", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("element")
+    private Set<Examen> examens = new HashSet<>();
 }

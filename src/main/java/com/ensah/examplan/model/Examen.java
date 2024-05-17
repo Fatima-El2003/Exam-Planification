@@ -2,7 +2,6 @@ package com.ensah.examplan.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import com.ensah.examplan.model.Salle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,23 +22,33 @@ public class Examen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long idExamen;
+
     private Date date;
     private Double dureePrevue;
     private Double dureeRelle;
     private LocalTime heureDebut;
     private String type;
-//    private String epreuve will be the file of the exam
-//    private String pv;
     private String rapportTextuelle;
+
     @OneToMany(mappedBy = "examen", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("examen")
     private Set<Salle> salles = new HashSet<>();
+
     @ManyToOne
     @JoinColumn(name = "session_id", referencedColumnName = "idSession")
-    @JsonIgnoreProperties("examen")
+    @JsonIgnoreProperties("examens")
     private Session session;
+
     @ManyToOne
-    @JoinColumn(name = "semestre_id", referencedColumnName = "idSemestre")//foreign key
+    @JoinColumn(name = "element_id", referencedColumnName = "idElemPedagogique")
     @JsonIgnoreProperties("examen")
-    private Semestre semestre;
+    private ElementPedagogique element;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "enseignant_id")
+    private Enseignant enseignant;
+
+    // Use this field to map the existing `id_semestre` column in the database
+    @Column(name = "id_semestre")
+    private Long idSemestre;
 }
