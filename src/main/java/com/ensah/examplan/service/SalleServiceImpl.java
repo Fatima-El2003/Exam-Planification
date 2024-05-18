@@ -5,6 +5,8 @@ import com.ensah.examplan.model.Salle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SalleServiceImpl implements SalleService{
     @Autowired
@@ -13,4 +15,11 @@ public class SalleServiceImpl implements SalleService{
     public Salle addSalle(Salle salle) {
         return salleRepository.save(salle);
     }
+
+    @Override
+    public List<Salle> getSalles() {
+        return salleRepository.findAll();
+    }
+
+
 }

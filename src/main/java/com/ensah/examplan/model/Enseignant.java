@@ -18,7 +18,7 @@ import java.util.List;
 public class Enseignant extends Personnel{
 
 
-    private Long idGroupe;
+   // private Long idGroupe;
     @Column(unique = true)
     private String email;
     private String password;

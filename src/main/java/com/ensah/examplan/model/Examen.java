@@ -53,7 +53,9 @@ public class Examen {
     private Long idSemestre;
 
     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] epreuve;
     @Lob
+    @Column(columnDefinition = "LONGBLOB")
     private byte[] pv;
 }
