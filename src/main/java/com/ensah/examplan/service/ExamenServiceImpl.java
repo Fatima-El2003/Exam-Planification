@@ -4,6 +4,7 @@ import com.ensah.examplan.model.Examen;
 import com.ensah.examplan.repository.ExamenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ public class ExamenServiceImpl implements ExamenService{
     private ExamenRepository examenRepository;
     @Override
     public Examen addExamen(Examen examen) {
+
+
         return examenRepository.save(examen);
     }
 

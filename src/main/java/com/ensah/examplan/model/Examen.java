@@ -51,4 +51,9 @@ public class Examen {
     // Use this field to map the existing `id_semestre` column in the database
     @Column(name = "id_semestre")
     private Long idSemestre;
+
+    @Lob
+    private byte[] epreuve;
+    @Lob
+    private byte[] pv;
 }
