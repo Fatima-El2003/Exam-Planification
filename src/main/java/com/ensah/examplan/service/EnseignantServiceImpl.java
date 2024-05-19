@@ -44,5 +44,8 @@ public class EnseignantServiceImpl implements EnseignantService{
     public void deleteEnseignant(Long idEnseignant) {
         enseignantRepository.deleteById(idEnseignant);
     }
-
+    @Override
+    public List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount) {
+        return enseignantRepository.findSurveillantsByGroupe(idGroupe, surveillantCount);
+    }
 }

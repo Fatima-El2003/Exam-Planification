@@ -9,4 +9,5 @@ public interface EnseignantService {
     List<Enseignant> getAllEnseignants();
     Enseignant updateEnseignant(Long idEnseignant, Enseignant updatedEnseignant);
     void deleteEnseignant(Long idEnseignant);
+    List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount);
 }

@@ -1,5 +1,6 @@
 package com.ensah.examplan.controller;
 
+import com.ensah.examplan.model.Admin;
 import com.ensah.examplan.model.Salle;
 import com.ensah.examplan.service.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,4 +26,6 @@ public class SalleController {
        return salleService.getSalles();
 
     }
+
+
 }

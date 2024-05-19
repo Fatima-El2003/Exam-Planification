@@ -16,11 +16,12 @@ public class Salle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
-    private Long id;
+    private Long idSalle;
     private String nom;
     @ManyToOne
     @JoinColumn(name = "idExamen", referencedColumnName = "idExamen")
     @JsonIgnoreProperties("salles")
     private Examen examen;
+    private Long surveillantCount;
 
 }

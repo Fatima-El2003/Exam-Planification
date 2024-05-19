@@ -1,5 +1,6 @@
 package com.ensah.examplan.service;
 
+import com.ensah.examplan.model.Examen;
 import com.ensah.examplan.repository.SalleRepository;
 import com.ensah.examplan.model.Salle;
 import org.springframework.beans.factory.annotation.Autowired;
