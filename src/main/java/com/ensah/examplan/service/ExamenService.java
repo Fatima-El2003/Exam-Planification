@@ -14,4 +14,5 @@ public interface ExamenService {
     Examen updateExamen(Long idExamen, Examen updatedExamen);
     void deleteExamen(Long idExamen);
     void affecterSurveillants(Long idGroupe,Set<Salle> salles);
+
 }

@@ -23,5 +23,8 @@ public class Salle {
     @JsonIgnoreProperties("salles")
     private Examen examen;
     private Long surveillantCount;
-
+    @OneToOne
+    @JoinColumn(name = "idAdmin",referencedColumnName = "idPersonnel")
+    @JsonIgnoreProperties("salle")
+    private Admin admin;
 }

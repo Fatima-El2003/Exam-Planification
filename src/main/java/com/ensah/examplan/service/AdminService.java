@@ -10,4 +10,6 @@ public interface AdminService {
     List<Admin> getAllAdmins();
     Admin updateAdmin(Long idAdmin, Admin updatedAdmin);
     void deleteAdmin(Long idAdmin);
+    List<Admin> getAdminsBySalleIdNULL();
+
 }

@@ -42,4 +42,9 @@ public class AdminServiceImpl implements AdminService{
         adminRepository.deleteById(idAdmin);
     }
 
+    @Override
+    public List<Admin> getAdminsBySalleIdNULL() {
+        return adminRepository.findAdminByIdSalleNull();
+    }
+
 }

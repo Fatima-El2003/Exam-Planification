@@ -1,8 +1,7 @@
 package com.ensah.examplan.service;
 
-import com.ensah.examplan.model.Enseignant;
-import com.ensah.examplan.model.Examen;
-import com.ensah.examplan.model.Salle;
+import com.ensah.examplan.model.*;
+import com.ensah.examplan.repository.AdminRepository;
 import com.ensah.examplan.repository.ExamenRepository;
 import com.ensah.examplan.repository.SalleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,10 @@ public class ExamenServiceImpl implements ExamenService {
 
     @Autowired
     private SalleRepository salleRepository;
-
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private AdminRepository adminRepository;
     @Autowired
     private EnseignantService enseignantService;
 
@@ -43,13 +45,31 @@ public class ExamenServiceImpl implements ExamenService {
 
         for (Salle salle : salles) {
             System.out.println(salle.getIdSalle());
-            Salle salle1=salleRepository.findById(salle.getIdSalle()).get();
+
+            Salle salle1 = salleRepository.findById(salle.getIdSalle()).get();
             salle1.setIdSalle(salle.getIdSalle());
             salle1.setNom(salle.getNom());
             salle1.setSurveillantCount(salle.getSurveillantCount());
             salle1.setExamen(savedExamen);
+
+            // Get the admin
+            Admin admin = adminService.getAdminById(salle.getAdmin().getIdPersonnel());
+
+            // Check if admin is new and needs to be saved
+            if (admin == null) {
+                admin = salle.getAdmin();
+                adminService.addAdmin(admin);  // Ensure admin is saved first
+            }
+
+            // Set admin to salle1
+            salle1.setAdmin(admin);
+
+            // Save the updated salle
             salleRepository.save(salle1);
 
+            // Update the admin with the salle ID
+            admin.setIdSalle(salle.getIdSalle());
+            adminService.updateAdmin(admin.getIdPersonnel(), admin);
         }
         affecterSurveillants(idGroupe, salles);
         return savedExamen;

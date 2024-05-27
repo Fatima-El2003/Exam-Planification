@@ -11,6 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/admins")
+@CrossOrigin("http://localhost:3000/")
+
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -27,6 +29,11 @@ public class AdminController {
     @GetMapping
     public ResponseEntity<List<Admin>> getAllAdmins(){
         List<Admin> admins = adminService.getAllAdmins();
+        return ResponseEntity.ok(admins);
+    }
+    @GetMapping("/nullSalle")
+    public ResponseEntity<List<Admin>> getAdminsBySalleIdNULL(){
+        List<Admin> admins = adminService.getAdminsBySalleIdNULL();
         return ResponseEntity.ok(admins);
     }
     @PutMapping("{idAdmin}")
