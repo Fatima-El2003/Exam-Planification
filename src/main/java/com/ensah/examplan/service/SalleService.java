@@ -11,4 +11,5 @@ public interface SalleService {
 
 
     List<Salle> getSalles();
+     List<Salle> getSallesByExamenId(Long examenId) ;
 }

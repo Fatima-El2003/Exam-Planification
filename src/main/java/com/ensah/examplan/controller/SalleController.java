@@ -26,6 +26,9 @@ public class SalleController {
        return salleService.getSalles();
 
     }
-
+    @GetMapping("/examen/{examenId}")
+    public List<Salle> getSallesByExamenId(@PathVariable Long examenId) {
+        return salleService.getSallesByExamenId(examenId);
+    }
 
 }

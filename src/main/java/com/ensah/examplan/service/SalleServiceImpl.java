@@ -21,6 +21,8 @@ public class SalleServiceImpl implements SalleService{
     public List<Salle> getSalles() {
         return salleRepository.findAll();
     }
-
+    public List<Salle> getSallesByExamenId(Long examenId) {
+        return salleRepository.findByExamenId(examenId);
+    }
 
 }
