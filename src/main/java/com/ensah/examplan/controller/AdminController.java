@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -32,8 +33,8 @@ public class AdminController {
         return ResponseEntity.ok(admins);
     }
     @GetMapping("/nullSalle")
-    public ResponseEntity<List<Admin>> getAdminsBySalleIdNULL(){
-        List<Admin> admins = adminService.getAdminsBySalleIdNULL();
+    public ResponseEntity<Admin> getAdminsBySalleIdNULL(LocalTime heureDebutExam, LocalTime heureFinExam){
+        Admin admins = adminService.getAdminsBySalleIdNULL( heureDebutExam,  heureFinExam);
         return ResponseEntity.ok(admins);
     }
     @PutMapping("{idAdmin}")

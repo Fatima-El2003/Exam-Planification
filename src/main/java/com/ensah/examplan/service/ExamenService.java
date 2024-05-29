@@ -4,6 +4,7 @@ import com.ensah.examplan.model.Examen;
 import com.ensah.examplan.model.Salle;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public interface ExamenService {
     List<Examen> getAllExamens();
     Examen updateExamen(Long idExamen, Examen updatedExamen);
     void deleteExamen(Long idExamen);
-    void affecterSurveillants(Long idGroupe,Set<Salle> salles);
+    void affecterSurveillants(Long idGroupe, Set<Salle> salles, LocalTime heureDebutExam, LocalTime heureFinExam);
+    void affecterAdmins(Set<Salle> salles,LocalTime heureDebutExam,LocalTime heureFinExam);
 
 }

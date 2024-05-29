@@ -7,6 +7,7 @@ import com.ensah.examplan.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -43,8 +44,8 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public List<Admin> getAdminsBySalleIdNULL() {
-        return adminRepository.findAdminByIdSalleNull();
+    public Admin getAdminsBySalleIdNULL(LocalTime heureDebutExam, LocalTime heureFinExam) {
+        return adminRepository.findAdminByIdSalleNull(heureDebutExam, heureFinExam);
     }
 
 }

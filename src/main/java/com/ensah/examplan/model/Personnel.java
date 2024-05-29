@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,8 @@ public class Personnel implements Serializable {
     @Column(name = "type", insertable = false, updatable = false)
     private String type;
     private Long idSalle;
+    // creneaux
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="id_personnel")
+    private List<Creneaux> creneaux;
 }

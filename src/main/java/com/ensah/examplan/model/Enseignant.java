@@ -38,4 +38,5 @@ public class Enseignant extends Personnel{
     @JoinColumn(name = "groupe_id",referencedColumnName = "idGroupe")
     @JsonIgnoreProperties("enseignants")
     Groupe groupe;
+
 }

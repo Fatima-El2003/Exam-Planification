@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Set;
 
@@ -53,25 +55,27 @@ public class ExamenServiceImpl implements ExamenService {
             salle1.setExamen(savedExamen);
 
             // Get the admin
-            Admin admin = adminService.getAdminById(salle.getAdmin().getIdPersonnel());
-
-            // Check if admin is new and needs to be saved
-            if (admin == null) {
-                admin = salle.getAdmin();
-                adminService.addAdmin(admin);  // Ensure admin is saved first
-            }
-
-            // Set admin to salle1
-            salle1.setAdmin(admin);
+//            Admin admin = adminService.getAdminById(salle.getAdmin().getIdPersonnel());
+//
+//            // Check if admin is new and needs to be saved
+//            if (admin == null) {
+//                admin = salle.getAdmin();
+//                adminService.addAdmin(admin);  // Ensure admin is saved first
+//            }
+//
+//            // Set admin to salle1
+//            salle1.setAdmin(admin);
 
             // Save the updated salle
             salleRepository.save(salle1);
 
             // Update the admin with the salle ID
-            admin.setIdSalle(salle.getIdSalle());
-            adminService.updateAdmin(admin.getIdPersonnel(), admin);
+       //     admin.setIdSalle(salle.getIdSalle());
+          //  adminService.updateAdmin(admin.getIdPersonnel(), admin);
         }
-        affecterSurveillants(idGroupe, salles);
+        affecterAdmins(salles,examen.getHeureDebut(),examen.getHeureDebut().plus(Duration.ofMinutes((long) (examen.getDureePrevue() * 60))));
+        affecterSurveillants(idGroupe, salles,examen.getHeureDebut(),examen.getHeureDebut().plus(Duration.ofMinutes((long) (examen.getDureePrevue() * 60))));
+        System.out.println("appel");
         return savedExamen;
     }
 
@@ -107,14 +111,30 @@ public class ExamenServiceImpl implements ExamenService {
     }
 
     @Override
-    public void affecterSurveillants(Long idGroupe, Set<Salle> salles) {
+    public void affecterSurveillants(Long idGroupe, Set<Salle> salles,LocalTime heureDebutExam,LocalTime heureFinExam) {
         for (Salle salle : salles) {
-            List<Enseignant> surveillants = enseignantService.getSurveillantsByGroupe(idGroupe, salle.getSurveillantCount());
+            //
+            List<Enseignant> surveillants = enseignantService.getSurveillantsByGroupe(idGroupe, salle.getSurveillantCount(), heureDebutExam , heureFinExam);
+            System.out.println(surveillants);
             Long idSalle = salle.getIdSalle();
-            for (Enseignant surveillant : surveillants) {
+            for (Enseignant surveillant : surveillants){
                surveillant.setIdSalle(idSalle);
                enseignantService.updateEnseignant(surveillant.getIdPersonnel(), surveillant);
             }
+        }
+    }
+    @Override
+    public void affecterAdmins(Set<Salle> salles,LocalTime heureDebutExam,LocalTime heureFinExam) {
+        for (Salle salle : salles) {
+            Salle salle1 = salleRepository.findById(salle.getIdSalle()).get();
+            salle1.setIdSalle(salle.getIdSalle());
+             Admin admin = adminService.getAdminsBySalleIdNULL(heureDebutExam , heureFinExam);
+            Long idSalle = salle.getIdSalle();
+            admin.setIdSalle(idSalle);
+            salle1.setAdmin(admin);
+            salleRepository.save(salle1);
+            adminService.updateAdmin(admin.getIdPersonnel(), admin);
+
         }
     }
 }

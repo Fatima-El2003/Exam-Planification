@@ -6,6 +6,7 @@ import com.ensah.examplan.repository.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -45,7 +46,7 @@ public class EnseignantServiceImpl implements EnseignantService{
         enseignantRepository.deleteById(idEnseignant);
     }
     @Override
-    public List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount) {
-        return enseignantRepository.findSurveillantsByGroupe(idGroupe, surveillantCount);
+    public List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount, LocalTime heureDebutExam, LocalTime heureFinExam) {
+        return enseignantRepository.findSurveillantsByGroupe(idGroupe, surveillantCount, heureDebutExam, heureFinExam);
     }
 }
