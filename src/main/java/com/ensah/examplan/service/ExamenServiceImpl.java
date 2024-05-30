@@ -1,8 +1,13 @@
 package com.ensah.examplan.service;
 
+<<<<<<< HEAD
 import com.ensah.examplan.model.Enseignant;
 import com.ensah.examplan.model.Examen;
 import com.ensah.examplan.model.Salle;
+=======
+import com.ensah.examplan.model.*;
+import com.ensah.examplan.repository.AdminRepository;
+>>>>>>> origin/master
 import com.ensah.examplan.repository.ExamenRepository;
 import com.ensah.examplan.repository.SalleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +16,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.time.Duration;
+import java.time.LocalTime;
+>>>>>>> origin/master
 import java.util.List;
 import java.util.Set;
 
@@ -21,7 +31,14 @@ public class ExamenServiceImpl implements ExamenService {
 
     @Autowired
     private SalleRepository salleRepository;
+<<<<<<< HEAD
 
+=======
+    @Autowired
+    private AdminService adminService;
+    @Autowired
+    private AdminRepository adminRepository;
+>>>>>>> origin/master
     @Autowired
     private EnseignantService enseignantService;
 
@@ -43,15 +60,46 @@ public class ExamenServiceImpl implements ExamenService {
 
         for (Salle salle : salles) {
             System.out.println(salle.getIdSalle());
+<<<<<<< HEAD
             Salle salle1=salleRepository.findById(salle.getIdSalle()).get();
+=======
+
+            Salle salle1 = salleRepository.findById(salle.getIdSalle()).get();
+>>>>>>> origin/master
             salle1.setIdSalle(salle.getIdSalle());
             salle1.setNom(salle.getNom());
             salle1.setSurveillantCount(salle.getSurveillantCount());
             salle1.setExamen(savedExamen);
+<<<<<<< HEAD
             salleRepository.save(salle1);
 
         }
         affecterSurveillants(idGroupe, salles);
+=======
+
+            // Get the admin
+//            Admin admin = adminService.getAdminById(salle.getAdmin().getIdPersonnel());
+//
+//            // Check if admin is new and needs to be saved
+//            if (admin == null) {
+//                admin = salle.getAdmin();
+//                adminService.addAdmin(admin);  // Ensure admin is saved first
+//            }
+//
+//            // Set admin to salle1
+//            salle1.setAdmin(admin);
+
+            // Save the updated salle
+            salleRepository.save(salle1);
+
+            // Update the admin with the salle ID
+       //     admin.setIdSalle(salle.getIdSalle());
+          //  adminService.updateAdmin(admin.getIdPersonnel(), admin);
+        }
+        affecterAdmins(salles,examen.getHeureDebut(),examen.getHeureDebut().plus(Duration.ofMinutes((long) (examen.getDureePrevue() * 60))));
+        affecterSurveillants(idGroupe, salles,examen.getHeureDebut(),examen.getHeureDebut().plus(Duration.ofMinutes((long) (examen.getDureePrevue() * 60))));
+        System.out.println("appel");
+>>>>>>> origin/master
         return savedExamen;
     }
 
@@ -87,14 +135,41 @@ public class ExamenServiceImpl implements ExamenService {
     }
 
     @Override
+<<<<<<< HEAD
     public void affecterSurveillants(Long idGroupe, Set<Salle> salles) {
         for (Salle salle : salles) {
             List<Enseignant> surveillants = enseignantService.getSurveillantsByGroupe(idGroupe, salle.getSurveillantCount());
             Long idSalle = salle.getIdSalle();
             for (Enseignant surveillant : surveillants) {
+=======
+    public void affecterSurveillants(Long idGroupe, Set<Salle> salles,LocalTime heureDebutExam,LocalTime heureFinExam) {
+        for (Salle salle : salles) {
+            //
+            List<Enseignant> surveillants = enseignantService.getSurveillantsByGroupe(idGroupe, salle.getSurveillantCount(), heureDebutExam , heureFinExam);
+            System.out.println(surveillants);
+            Long idSalle = salle.getIdSalle();
+            for (Enseignant surveillant : surveillants){
+>>>>>>> origin/master
                surveillant.setIdSalle(idSalle);
                enseignantService.updateEnseignant(surveillant.getIdPersonnel(), surveillant);
             }
         }
     }
+<<<<<<< HEAD
+=======
+    @Override
+    public void affecterAdmins(Set<Salle> salles,LocalTime heureDebutExam,LocalTime heureFinExam) {
+        for (Salle salle : salles) {
+            Salle salle1 = salleRepository.findById(salle.getIdSalle()).get();
+            salle1.setIdSalle(salle.getIdSalle());
+             Admin admin = adminService.getAdminsBySalleIdNULL(heureDebutExam , heureFinExam);
+            Long idSalle = salle.getIdSalle();
+            admin.setIdSalle(idSalle);
+            salle1.setAdmin(admin);
+            salleRepository.save(salle1);
+            adminService.updateAdmin(admin.getIdPersonnel(), admin);
+
+        }
+    }
+>>>>>>> origin/master
 }

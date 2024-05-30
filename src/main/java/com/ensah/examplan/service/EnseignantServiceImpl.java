@@ -6,6 +6,10 @@ import com.ensah.examplan.repository.EnseignantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalTime;
+>>>>>>> origin/master
 import java.util.List;
 
 @Service
@@ -34,10 +38,16 @@ public class EnseignantServiceImpl implements EnseignantService{
         enseignant.setNom(updatedEnseignant.getNom());
         enseignant.setPrenom(updatedEnseignant.getPrenom());
         enseignant.setIdSalle(updatedEnseignant.getIdSalle());
+<<<<<<< HEAD
         enseignant.setIdGroupe(updatedEnseignant.getIdGroupe());
         enseignant.setIdDepartment(updatedEnseignant.getIdDepartment());
         enseignant.setIdFiliere(updatedEnseignant.getIdFiliere());
         enseignant.setEmail(updatedEnseignant.getEmail());
+=======
+      //  enseignant.setIdGroupe(updatedEnseignant.getIdGroupe());
+        enseignant.setEmail(updatedEnseignant.getEmail());
+        enseignant.setPassword(updatedEnseignant.getPassword());
+>>>>>>> origin/master
         return enseignantRepository.save(enseignant);
     }
 
@@ -46,7 +56,12 @@ public class EnseignantServiceImpl implements EnseignantService{
         enseignantRepository.deleteById(idEnseignant);
     }
     @Override
+<<<<<<< HEAD
     public List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount) {
         return enseignantRepository.findSurveillantsByGroupe(idGroupe, surveillantCount);
+=======
+    public List<Enseignant> getSurveillantsByGroupe(Long idGroupe, Long surveillantCount, LocalTime heureDebutExam, LocalTime heureFinExam) {
+        return enseignantRepository.findSurveillantsByGroupe(idGroupe, surveillantCount, heureDebutExam, heureFinExam);
+>>>>>>> origin/master
     }
 }

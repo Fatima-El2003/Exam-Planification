@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ensah</groupId>
-	<artifactId>examplan</artifactId>
+	<artifactId>Exam-Planification</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>examplan</name>
 	<description>Demo project for Spring Boot</description>

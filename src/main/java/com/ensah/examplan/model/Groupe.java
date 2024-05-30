@@ -21,7 +21,11 @@ public class Groupe {
     @Column(nullable = false, updatable = false)
     private Long idGroupe ;
     private String nom;
+<<<<<<< HEAD
     @OneToMany(mappedBy = "idGroupe", cascade = CascadeType.ALL, orphanRemoval = true)
+=======
+    @OneToMany(mappedBy = "groupe", cascade = CascadeType.ALL, orphanRemoval = true)
+>>>>>>> origin/master
     @JsonIgnoreProperties("groupe")
     private List<Enseignant> enseignants=new ArrayList<>();
 }

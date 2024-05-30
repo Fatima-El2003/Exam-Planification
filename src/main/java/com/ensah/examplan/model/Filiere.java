@@ -21,7 +21,11 @@ public class Filiere {
     @Column(nullable = false, updatable = false)
     private Long idFiliere;
     private String nomFiliere;
+<<<<<<< HEAD
     @OneToMany(mappedBy = "idFiliere", cascade = CascadeType.ALL, orphanRemoval = true)
+=======
+    @OneToMany(mappedBy = "filiere", cascade = CascadeType.ALL, orphanRemoval = true)
+>>>>>>> origin/master
     @JsonIgnoreProperties("filiere")
     private List<Enseignant> enseignants=new ArrayList<>();
 }

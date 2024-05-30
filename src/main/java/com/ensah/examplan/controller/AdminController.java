@@ -7,11 +7,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalTime;
+>>>>>>> origin/master
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/admins")
 @CrossOrigin("http://localhost:3000/")
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 public class AdminController {
     @Autowired
     private AdminService adminService;
@@ -30,6 +38,14 @@ public class AdminController {
         List<Admin> admins = adminService.getAllAdmins();
         return ResponseEntity.ok(admins);
     }
+<<<<<<< HEAD
+=======
+    @GetMapping("/nullSalle")
+    public ResponseEntity<Admin> getAdminsBySalleIdNULL(LocalTime heureDebutExam, LocalTime heureFinExam){
+        Admin admins = adminService.getAdminsBySalleIdNULL( heureDebutExam,  heureFinExam);
+        return ResponseEntity.ok(admins);
+    }
+>>>>>>> origin/master
     @PutMapping("{idAdmin}")
     public ResponseEntity<Admin> updateAdmin(@PathVariable("idAdmin") Long id,@RequestBody Admin updatedAdmin){
         Admin admin = adminService.updateAdmin(id, updatedAdmin);
