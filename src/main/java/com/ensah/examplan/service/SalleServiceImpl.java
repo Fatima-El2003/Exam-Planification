@@ -1,5 +1,9 @@
 package com.ensah.examplan.service;
 
+<<<<<<< HEAD
+import com.ensah.examplan.exception.ResourceNotFoundException;
+=======
+>>>>>>> origin/master
 import com.ensah.examplan.model.Examen;
 import com.ensah.examplan.repository.SalleRepository;
 import com.ensah.examplan.model.Salle;
@@ -21,8 +25,18 @@ public class SalleServiceImpl implements SalleService{
     public List<Salle> getSalles() {
         return salleRepository.findAll();
     }
+<<<<<<< HEAD
+
+    @Override
+    public Salle getSalleById(Long idSalle) {
+        return salleRepository.findById(idSalle).orElseThrow(() -> new ResourceNotFoundException("la salle avec cet id n'existe pas" +idSalle ));
+    }
+
+
+=======
     public List<Salle> getSallesByExamenId(Long examenId) {
         return salleRepository.findByExamenId(examenId);
     }
 
+>>>>>>> origin/master
 }

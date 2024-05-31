@@ -1,6 +1,10 @@
 package com.ensah.examplan.service;
 
 import com.ensah.examplan.model.Examen;
+<<<<<<< HEAD
+import com.ensah.examplan.model.Filiere;
+=======
+>>>>>>> origin/master
 import com.ensah.examplan.model.Salle;
 
 import java.util.List;
@@ -11,5 +15,9 @@ public interface SalleService {
 
 
     List<Salle> getSalles();
+<<<<<<< HEAD
+    Salle getSalleById(Long idSalle);
+=======
      List<Salle> getSallesByExamenId(Long examenId) ;
+>>>>>>> origin/master
 }

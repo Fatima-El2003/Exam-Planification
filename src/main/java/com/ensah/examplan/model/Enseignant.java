@@ -21,6 +21,17 @@ public class Enseignant extends Personnel{
    // private Long idGroupe;
     @Column(unique = true)
     private String email;
+<<<<<<< HEAD
+    @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties("enseignant")
+    private List<ElementPedagogique> elementPedagogiques=new ArrayList<>();
+    @Column(name ="id_department")
+    Long idDepartment;
+    @Column(name = "id_filiere")
+    Long idFiliere;
+    @Column(name = "id_groupe")
+    Long idGroupe;
+=======
     private String password;
 
     @OneToMany(mappedBy = "enseignant", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -39,4 +50,5 @@ public class Enseignant extends Personnel{
     @JsonIgnoreProperties("enseignants")
     Groupe groupe;
 
+>>>>>>> origin/master
 }

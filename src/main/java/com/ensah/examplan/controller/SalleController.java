@@ -1,6 +1,10 @@
 package com.ensah.examplan.controller;
 
 import com.ensah.examplan.model.Admin;
+<<<<<<< HEAD
+import com.ensah.examplan.model.Groupe;
+=======
+>>>>>>> origin/master
 import com.ensah.examplan.model.Salle;
 import com.ensah.examplan.service.SalleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +30,19 @@ public class SalleController {
        return salleService.getSalles();
 
     }
+<<<<<<< HEAD
+    @GetMapping("{idSalle}")
+    public ResponseEntity<Salle> getSalleById(@PathVariable("idSalle") Long id){
+        Salle salle = salleService.getSalleById(id);
+        return ResponseEntity.ok(salle);
+    }
+
+
+=======
     @GetMapping("/examen/{examenId}")
     public List<Salle> getSallesByExamenId(@PathVariable Long examenId) {
         return salleService.getSallesByExamenId(examenId);
     }
 
+>>>>>>> origin/master
 }

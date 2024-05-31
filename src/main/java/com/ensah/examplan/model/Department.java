@@ -21,7 +21,11 @@ public class Department {
     @Column(nullable = false, updatable = false)
     private Long idDepartment;
     private String nomDepartment;
+<<<<<<< HEAD
+    @OneToMany(mappedBy = "idDepartment", cascade = CascadeType.ALL, orphanRemoval = true)
+=======
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL, orphanRemoval = true)
+>>>>>>> origin/master
     @JsonIgnoreProperties("department")
     private List<Enseignant> enseignants=new ArrayList<>();
 }

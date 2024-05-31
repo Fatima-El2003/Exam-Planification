@@ -1,6 +1,11 @@
 package com.ensah.examplan.repository;
 
 import com.ensah.examplan.model.Admin;
+<<<<<<< HEAD
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AdminRepository extends JpaRepository<Admin, Long> {
+=======
 import com.ensah.examplan.model.Enseignant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +27,5 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
            "LIMIT 1", nativeQuery = true)
     Admin findAdminByIdSalleNull(@Param("heureDebutExam") LocalTime heureDebutExam, @Param("heureFinExam") LocalTime heureFinExam);
 
+>>>>>>> origin/master
 }

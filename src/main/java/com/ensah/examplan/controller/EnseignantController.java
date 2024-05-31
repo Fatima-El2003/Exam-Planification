@@ -16,7 +16,11 @@ import java.util.List;
 public class EnseignantController {
     @Autowired
     private EnseignantService enseignantService;
+<<<<<<< HEAD
+    @PostMapping()
+=======
     @PostMapping
+>>>>>>> origin/master
     public ResponseEntity<Enseignant> addEnseignant(@RequestBody Enseignant enseignant){
         List<ElementPedagogique> elementPedagogiques = enseignant.getElementPedagogiques();
         if (elementPedagogiques != null) {
