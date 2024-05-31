@@ -5,6 +5,7 @@ import com.ensah.examplan.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalTime;
@@ -15,19 +16,27 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000/")
 
 public class AdminController {
+
     @Autowired
     private AdminService adminService;
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "welcome this endpoint is not secure";
+    }
     @PostMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Admin> addAdmin(@RequestBody Admin admin){
         Admin savedAdmin = adminService.addAdmin(admin);
         return new ResponseEntity<>(savedAdmin, HttpStatus.CREATED);
     }
     @GetMapping("{idAdmin}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<Admin> getAdminById(@PathVariable("idAdmin") Long id){
         Admin admin = adminService.getAdminById(id);
         return ResponseEntity.ok(admin);
     }
     @GetMapping
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Admin>> getAllAdmins(){
         List<Admin> admins = adminService.getAllAdmins();
         return ResponseEntity.ok(admins);
